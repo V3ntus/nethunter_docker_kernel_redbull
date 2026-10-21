@@ -75,4 +75,45 @@ Change the commit hash in this script to update.
 ./2.sh
 ```
 
-You will get the kernel in `out/arch/arm64/boot` it may be `Image` or `image.gz.dtb`.  Get the kernel module in `out/lib/module`, then package the kernel with anykernel3, enjoy
+You will get the kernel in `out/arch/arm64/boot` it may be `Image` or `image.gz.dtb`.  Get the kernel module in `out/lib/module`.
+
+## 0x06 Rebuild a boot.img
+
+Pull a stock `boot.img` from the factory image. Copy your built `Image` to `kernel` and use `magiskboot` to repack the original `boot.img` to a new boot image:
+
+```
+[nix-shell:~/Downloads/bramble/bramble-sq3a.220705.003.a1]$ ls
+boot.img kernel
+[nix-shell:~/Downloads/bramble/bramble-sq3a.220705.003.a1]$ ../../magiskboot-linux-main/x86_64/magiskboot repack boot.img new-boot.img
+Parsing boot image: [boot.img]
+HEADER_VER      [3]
+KERNEL_SZ       [11731519]
+RAMDISK_SZ      [1380363]
+OS_VERSION      [12.0.0]
+OS_PATCH_LEVEL  [2022-07]
+PAGESIZE        [4096]
+CMDLINE         []
+KERNEL_FMT      [lz4]
+RAMDISK_FMT     [lz4_legacy]
+VBMETA
+Repack to boot image: [new-boot.img]
+HEADER_VER      [3]
+KERNEL_SZ       [25112507]
+RAMDISK_SZ      [0]
+OS_VERSION      [12.0.0]
+OS_PATCH_LEVEL  [2022-07]
+PAGESIZE        [4096]
+CMDLINE         []
+```
+```
+```
+
+
+## 0x07 Boot the kernel and install KernelSU_Next manager
+
+Reboot the phone into the bootloader and run `fastboot boot new-boot.img`.
+
+When it boots, install KernelSU_Next manager app.
+
+Enjoy!
+
