@@ -23,7 +23,7 @@ the problems which may result by upgrading your kernel.
 
 ## 0x01 Environment preparation
 
-For Kali Linux system or (debian/ubuntu)
+It's recommended to run this in an Ubuntu 22.04 or Debian 10 VM/container/machine. I was able to compile this in DistroBox under NixOS using Ubuntu 22.04.
 
 ```
 apt update && apt upgrade -y && apt full-upgrade -y && apt install -y curl wget vim git ccache automake flex lzop bison gperf \
@@ -52,11 +52,18 @@ cd nethunter_docker_kernel_redbull
 
 patch -p1 < add-rtl88xxau-5.6.4.2-drivers.patch
 patch -p1 < add-wifi-injection-4.14.patch
+patch -p1 < add-kprobe-config.patch
 ```
 
-## 0x04 Graphically configure the kernel
+## 0x04 Configure the kernel and pull KernelSU Next
 
 Feel free to configure options to your liking. The kernel should already be pre-configured so you can just save and exit.
+
+### KernelSU Next Note!
+
+Currently, this script pulls the UAPI 5 commit for KernelSU Next hooks because the KernelSU Next manager is still on UAPI 5.
+
+Change the commit hash in this script to update.
 
 ```
 ./1.sh
