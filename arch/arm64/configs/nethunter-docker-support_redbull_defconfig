@@ -1,4 +1,4 @@
-CONFIG_LOCALVERSION="-proton-nethunter-docker-support_by_tomxi1997"
+CONFIG_LOCALVERSION="-proton-nh-V3ntus"
 CONFIG_KERNEL_LZ4=y
 CONFIG_SYSVIPC=y
 CONFIG_POSIX_MQUEUE=y
